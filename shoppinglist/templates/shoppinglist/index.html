@@ -1,36 +1,22 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <title>Shopping List</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="&copy; 2018 Rodionov Aleksandr"/>
-    <link rel="shortcut icon" type="image/x-icon" href="/static/favicon.ico"/>
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/static/css/open-iconic-bootstrap.min.css"/>
-    <script src="/static/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="/static/js/bootstrap.bundle.min.js"></script>
-    <script src="/static/js/main.js"></script>
-</head>
-<body>
-<div class="container">
-    <div class="col-md-6 offset-md-3">
-        <h1>Shopping lists</h1>
-        <ul class="list-unstyled">
-            {% for list in lists %}
-                <li>
-                    <p>
-                        <a href="/itemsList?id={{list.id}}" class="btn btn-outline-secondary">{{list.name}}</a>
-                        <a href="/itemsList/edit?id={{list.id}}" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="/itemsList/delete?id={{list.id}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this list?')">Delete</a>
-                    </p>
-                </li>
-            {% endfor %}
-        </ul>
-        <a href="/itemsList/add" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Add new list" aria-hidden="true">
-            <span class="oi oi-plus"></span>
-        </a>
-    </div>
-</div>
-</body>
-</html>
+{% extends 'shoppinglist/layout.html' %}
+
+{% block title %}Shopping list with Django{% endblock %}
+
+{% block content %}
+<h1>Shopping lists</h1>
+<ul class="list-unstyled">
+    {% for list in lists %}
+        <li>
+            <p>
+                <a href="/itemsList?id={{list.id}}" class="btn btn-outline-secondary">{{list.name}}</a>
+                <a href="/itemsList/edit?id={{list.id}}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/itemsList/delete?id={{list.id}}" class="btn btn-danger btn-sm"
+                   onclick="return confirm('Are you sure you want to delete this list?')">Delete</a>
+            </p>
+        </li>
+    {% endfor %}
+</ul>
+<a href="/itemsList/add" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Add new list" aria-hidden="true">
+    <span class="oi oi-plus"></span>
+</a>
+{% endblock %}
