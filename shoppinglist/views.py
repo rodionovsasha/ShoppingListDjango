@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
+from .models import ItemsList
+
 
 def index(request):
-    return render(request, 'shoppinglist/index.html', {})
+    lists = ItemsList.objects.all()
+    return render(request, 'shoppinglist/index.html', {'lists': lists})

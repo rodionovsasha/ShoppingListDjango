@@ -15,29 +15,17 @@
 <body>
 <div class="container">
     <div class="col-md-6 offset-md-3">
-        <h1>Shopping list</h1>
+        <h1>Shopping lists</h1>
         <ul class="list-unstyled">
-            <li>
-                <p>
-                    <a href="/itemsList?id=1" class="btn btn-outline-secondary">Shopping list 1</a>
-                    <a href="/itemsList/edit?id=1" class="btn btn-warning btn-sm">Edit</a>
-                    <a href="/itemsList/delete?id=1" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this list?')">Delete</a>
-                </p>
-            </li>
-            <li>
-                <p>
-                    <a href="/itemsList?id=2" class="btn btn-outline-secondary">Shopping list 2</a>
-                    <a href="/itemsList/edit?id=2" class="btn btn-warning btn-sm">Edit</a>
-                    <a href="/itemsList/delete?id=2" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this list?')">Delete</a>
-                </p>
-            </li>
-            <li>
-                <p>
-                    <a href="/itemsList?id=3" class="btn btn-outline-secondary">Shopping list 3</a>
-                    <a href="/itemsList/edit?id=3" class="btn btn-warning btn-sm">Edit</a>
-                    <a href="/itemsList/delete?id=3" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this list?')">Delete</a>
-                </p>
-            </li>
+            {% for list in lists %}
+                <li>
+                    <p>
+                        <a href="/itemsList?id={{list.id}}" class="btn btn-outline-secondary">{{list.name}}</a>
+                        <a href="/itemsList/edit?id={{list.id}}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="/itemsList/delete?id={{list.id}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this list?')">Delete</a>
+                    </p>
+                </li>
+            {% endfor %}
         </ul>
         <a href="/itemsList/add" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Add new list" aria-hidden="true">
             <span class="oi oi-plus"></span>
