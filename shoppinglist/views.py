@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
+from .forms import ItemsListForm
 from .models import ItemsList, Item
 
 
@@ -17,3 +18,16 @@ def get_items_list(request, id):
 def get_item(request, id):
     item = get_object_or_404(Item, pk=id)
     return render(request, 'shoppinglist/item.html', {'item': item})
+
+
+def add_items_list(request):
+    if request.method == "POST":
+        form = ItemsListForm(request.POST)
+        if form.is_valid():
+            list_of_items = form.save()
+            return redirect('items_list', id=list_of_items.id)
+        else:
+            return render(request, 'shoppinglist/add_items_list.html',  {'form': form})
+    else:
+        form = ItemsListForm()
+        return render(request, 'shoppinglist/add_items_list.html', {'form': form})

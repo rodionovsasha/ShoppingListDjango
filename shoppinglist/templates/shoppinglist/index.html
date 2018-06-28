@@ -16,7 +16,7 @@
         </li>
     {% endfor %}
 </ul>
-<a href="/itemsList/add" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Add new list" aria-hidden="true">
+<a href="{% url 'add_items_list' %}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Add new list" aria-hidden="true">
     <span class="oi oi-plus"></span>
 </a>
 {% endblock %}
