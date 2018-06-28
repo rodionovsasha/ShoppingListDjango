@@ -56,7 +56,7 @@
         </a>
     </li>
     <li class="list-inline-item">
-        <a href="/item/edit?id=item.id" class="btn btn-warning btn-sm" role="button" data-toggle="tooltip" data-placement="bottom" title="Edit item">
+        <a href="{% url 'edit_item' list_id=item.items_list.id id=item.id %}" class="btn btn-warning btn-sm" role="button" data-toggle="tooltip" data-placement="bottom" title="Edit item">
             <span class="oi oi-pencil"></span>
         </a>
     </li>

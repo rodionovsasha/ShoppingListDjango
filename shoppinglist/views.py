@@ -63,10 +63,10 @@ def add_item(request, list_id):
             item.save()
             return redirect('item', list_id=list_id, id=item.id)
         else:
-            return render(request, 'shoppinglist/add_item.html',  {'form': form})
+            return render(request, 'shoppinglist/add_item.html',  {'form': form, 'list_id': list_id})
     else:
         form = ItemForm()
-        return render(request, 'shoppinglist/add_item.html', {'form': form})
+        return render(request, 'shoppinglist/add_item.html', {'form': form, 'list_id': list_id})
 
 
 def edit_item(request, list_id, id):
@@ -75,12 +75,12 @@ def edit_item(request, list_id, id):
         form = ItemForm(request.POST, instance=item)
         if form.is_valid():
             form.save()
-            return redirect('item', id=id)
+            return redirect('item', list_id=list_id, id=id)
         else:
-            return render(request, 'shoppinglist/edit_item.html',  {'form': form})
+            return render(request, 'shoppinglist/edit_item.html',  {'form': form, 'list_id': list_id})
     else:
         form = ItemForm(instance=item)
-        return render(request, 'shoppinglist/edit_item.html', {'form': form})
+        return render(request, 'shoppinglist/edit_item.html', {'form': form, 'list_id': list_id})
 
 
 def delete_item(request, list_id, id):
