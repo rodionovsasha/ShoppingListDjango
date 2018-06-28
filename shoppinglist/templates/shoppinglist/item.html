@@ -1,0 +1,69 @@
+{% extends 'shoppinglist/layout.html' %}
+
+{% block title %}{{item.name}}{% endblock %}
+
+{% block content %}
+<div class="list-group">
+    <h1 class="list-group-item list-group-item-info">{{item.name}}</h1>
+    <div class="list-group-item">
+        <div class="row">
+            <div class="col-md-7">
+                <strong>ID</strong>
+            </div>
+            <div class="col-md-5">
+                <strong>{{item.id}}</strong>
+            </div>
+        </div>
+    </div>
+    {% if item.comment %}
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-md-7">
+                    <strong>Comment</strong>
+                </div>
+                <div class="col-md-5">
+                    <strong>{{item.comment}}</strong>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="list-group-item">
+        <div class="row">
+            <div class="col-md-7">
+                <strong>Bought</strong>
+            </div>
+            <div class="col-md-5">
+                <strong>
+                    {% if item.is_bought %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                </strong>
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="list-inline">
+    <li class="list-inline-item">
+        <a href="{% url 'items_list' id=item.items_list.id %}" class="btn btn-info btn-sm" role="button" data-toggle="tooltip" data-placement="bottom" title="Back to the list">
+            <span class="oi oi-arrow-thick-left"></span>
+        </a>
+    </li>
+    <li class="list-inline-item">
+        <a href="/" class="btn btn-info btn-sm" role="button" data-toggle="tooltip" data-placement="bottom" title="All lists">
+            <span class="oi oi-list"></span>
+        </a>
+    </li>
+    <li class="list-inline-item">
+        <a href="/item/edit?id=item.id" class="btn btn-warning btn-sm" role="button" data-toggle="tooltip" data-placement="bottom" title="Edit item">
+            <span class="oi oi-pencil"></span>
+        </a>
+    </li>
+    <li class="list-inline-item">
+        <a href="/item/delete?id=item.id&listId=item.itemsList.id" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-sm" role="button" data-toggle="tooltip" data-placement="bottom" title="Delete item">
+            <span class="oi oi-x"></span>
+        </a>
+    </li>
+</ul>
+{% endblock %}

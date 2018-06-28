@@ -9,7 +9,7 @@
         <div class="list-group-item{% if item.is_bought %} list-group-item-success{% endif %}">
             <div class="row">
                 <div class="col-md-7">
-                    <a href="/item?id=4">{{item.name}}</a>
+                    <a href="{% url 'item' id=item.id %}">{{item.name}}</a>
                     {% if item.comment %}
                         <small class="clearfix">{{item.comment}}</small>
                     {% endif %}
