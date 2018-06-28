@@ -9,7 +9,7 @@
         <li>
             <p>
                 <a href="{% url 'items_list' id=list.id %}" class="btn btn-outline-secondary">{{list.name}}</a>
-                <a href="/itemsList/edit?id={{list.id}}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'edit_items_list' id=list.id %}" class="btn btn-warning btn-sm">Edit</a>
                 <a href="/itemsList/delete?id={{list.id}}" class="btn btn-danger btn-sm"
                    onclick="return confirm('Are you sure you want to delete this list?')">Delete</a>
             </p>

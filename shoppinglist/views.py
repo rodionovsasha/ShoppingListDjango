@@ -31,3 +31,17 @@ def add_items_list(request):
     else:
         form = ItemsListForm()
         return render(request, 'shoppinglist/add_items_list.html', {'form': form})
+
+
+def edit_items_list(request, id):
+    list_of_items = get_object_or_404(ItemsList, pk=id)
+    if request.method == "POST":
+        form = ItemsListForm(request.POST, instance=list_of_items)
+        if form.is_valid():
+            form.save()
+            return redirect('items_list', id=id)
+        else:
+            return render(request, 'shoppinglist/edit_items_list.html',  {'form': form})
+    else:
+        form = ItemsListForm(instance=list_of_items)
+        return render(request, 'shoppinglist/edit_items_list.html', {'form': form})
