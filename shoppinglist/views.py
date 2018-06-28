@@ -10,9 +10,9 @@ def index(request):
 
 
 def get_items_list(request, id):
-    list_of_items = get_object_or_404(ItemsList, pk=id)
-    items = list_of_items.item_set.all().order_by('is_bought', 'name')
-    return render(request, 'shoppinglist/items_list.html', {'list': list_of_items, 'items': items})
+    items_list = get_object_or_404(ItemsList, pk=id)
+    items = items_list.item_set.all().order_by('is_bought', 'name')
+    return render(request, 'shoppinglist/items_list.html', {'list': items_list, 'items': items})
 
 
 def get_item(request, id):
@@ -24,8 +24,8 @@ def add_items_list(request):
     if request.method == "POST":
         form = ItemsListForm(request.POST)
         if form.is_valid():
-            list_of_items = form.save()
-            return redirect('items_list', id=list_of_items.id)
+            items_list = form.save()
+            return redirect('items_list', id=items_list.id)
         else:
             return render(request, 'shoppinglist/add_items_list.html',  {'form': form})
     else:
@@ -34,14 +34,20 @@ def add_items_list(request):
 
 
 def edit_items_list(request, id):
-    list_of_items = get_object_or_404(ItemsList, pk=id)
+    items_list = get_object_or_404(ItemsList, pk=id)
     if request.method == "POST":
-        form = ItemsListForm(request.POST, instance=list_of_items)
+        form = ItemsListForm(request.POST, instance=items_list)
         if form.is_valid():
             form.save()
             return redirect('items_list', id=id)
         else:
             return render(request, 'shoppinglist/edit_items_list.html',  {'form': form})
     else:
-        form = ItemsListForm(instance=list_of_items)
+        form = ItemsListForm(instance=items_list)
         return render(request, 'shoppinglist/edit_items_list.html', {'form': form})
+
+
+def delete_items_list(request, id):
+    items_list = get_object_or_404(ItemsList, pk=id)
+    items_list.delete()
+    return redirect('index')
