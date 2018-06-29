@@ -3,7 +3,7 @@ This is a simple project which is based on Django framework.
 
 A live deployment is available on pythonanywhere.com: http://rodionovsasha.pythonanywhere.com/
 
-#### Run the application
+### Run the application
 <pre>
 python manage.py runserver
 </pre>
@@ -16,4 +16,14 @@ http://localhost:8000
 Admin panel:
 <pre>
 http://localhost:8000/admin
+</pre>
+
+#### Run tests
+<pre>
+python manage.py test
+</pre>
+
+Run with coverage:
+<pre>
+coverage run manage.py test -v 2
 </pre>
