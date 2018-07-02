@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rodionovsasha/ShoppingListDjango.svg?branch=master)](https://travis-ci.org/rodionovsasha/ShoppingListDjango)
+
 # ShoppingList Django
 This is a simple project which is based on Django framework.
 
