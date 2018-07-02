@@ -4,6 +4,6 @@ python:
 env:
   -DJANGO=2.0.6
 install:
-  - pip install -q Django==$DJANGO --use-mirrors
+  - pip install -q Django==$DJANGO
 script:
   - python manage.py test
