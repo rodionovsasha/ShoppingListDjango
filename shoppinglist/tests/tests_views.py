@@ -25,7 +25,7 @@ class ItemsListViewTest(TestCase):
         self.assertTemplateUsed(resp, 'shoppinglist/index.html')
 
     def test_lists_returns_all_lists(self):
-        resp = self.client.get(reverse('index'))
+        resp = self.client.get('/')
         self.assertEqual(resp.status_code, 200)
         print(resp)
         self.assertTrue( len(resp.context['lists']) == 5)
