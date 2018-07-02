@@ -7,3 +7,9 @@ install:
   - pip install -q Django==$DJANGO
 script:
   - python manage.py test
+
+branches:
+  only: master
+
+notifications:
+  email: false
